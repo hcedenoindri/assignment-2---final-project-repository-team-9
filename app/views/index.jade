@@ -1,5 +1,26 @@
-extends layout
+doctype html
+html
+  head
+    title= title
+    link(rel="stylesheet", id="bootstrap-css", href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css")
+    script(src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js")
+    script(src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js")
+    link(rel='stylesheet', href='/stylesheets/index.css')
 
-block content
-  h1= title
-  p Welcome to #{title}
+  body
+    block content
+      div(class="wrapper fadeInDown")
+        div(id="formContent")
+        
+          div(class="fadeIn first")
+            img(src="", id="icon", alt="User Icon")
+            
+            form
+              input(type="text", id="login", class="fadeIn second", name="login", placeholder="login")
+              input(type="text", id="password", class="fadeIn third", name="login", placeholder="password")
+              input(type="submit", class="fadeIn fourth", value="Log In")
+            
+            div(id="formFooter")
+              a(class="underlineHover", href="#") Forgot Password?
+                
+
