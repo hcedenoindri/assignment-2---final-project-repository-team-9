@@ -11,7 +11,7 @@ router.post('/', function(req, res, next) {
     var password = req.body.password;
     
     if (password.length < 8){
-        var error = "Password not long enough";
+        var error = "Passwords must be at least 8 characters long";
         res.render('error', {error:error});
     }
     else{
