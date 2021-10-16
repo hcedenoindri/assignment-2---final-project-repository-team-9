@@ -9,6 +9,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
     
+  // TODO: password and email init as undefined
   var password = req.body.password;
   var email = req.body.email;
   var found_flag = false;
@@ -24,16 +25,19 @@ router.post('/', function(req, res, next) {
   for (var index = 0; index < users.length; ++index) {
       var user = users[index];
      
-      if(user.email == email && user.password == password) {
+      if(user.email === email && user.password === password) {
         found_flag = true;
         break;
       }
+
+      found_flag = false;
   }
 
   if (found_flag) {
     // res.render(confirmation, users);
   }
   else {
+    // TODO: error message instead of interface
     var error = "Incorrect email or password";
     res.render('error', {error: error} );
   }
