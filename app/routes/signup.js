@@ -1,8 +1,17 @@
 var express = require('express');
 var router = express.Router();
 var fs = require('fs');
+var users = require('../users.json');
+var today = new Date();
+var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
-/* GET home page. */
+router.get('/', function(req, res, next) {
+    var anObject = {
+        "date": date
+    }
+    res.render('signup', {anObject});
+});
+
 router.post('/', function(req, res, next) {
     
     var first_name = req.body.first_name;
@@ -19,17 +28,18 @@ router.post('/', function(req, res, next) {
 
         'use strict';
 
-        let users = [{ 
+        let user = { 
             first_name: first_name,
             last_name: last_name, 
             email: email,
             password: password
-        }];
+        };
         
+        users.push(user);
         let data = JSON.stringify(users);
         fs.writeFileSync('users.json', data);
 
-        res.render('confirmation', { first_name : first_name, last_name: last_name});
+        // res.render('confirmation', { first_name : first_name, last_name: last_name});
     }
 });
 
