@@ -17,12 +17,12 @@ html
             img(src="http://www.newdesignfile.com/postpic/2014/02/windows-8-user-account-icon_325746.png", id="icon", alt="User Icon")
             <br>
             <span class="welcometxt">
-            | Hello! Please log in.
+            | <b>Hello!</b><br>Please log in.
             </span>
 
-            form(method="post")
-              input(type="text", id="email", class="fadeIn second", name="login", placeholder="email")
-              input(type="text", id="password", class="fadeIn third", name="login", placeholder="password")
+            form(method="post", action="/loginSubmit")
+              input(type="text", id="email", class="fadeIn second", name="email", placeholder="Email")
+              input(type="text", id="password", class="fadeIn third", name="password", placeholder="Password")
               input(type="submit", class="fadeIn fourth", value="Log In")
 
             //- div(class="text-center p-t-115")
