@@ -1,21 +1,19 @@
 var express = require('express');
 var router = express.Router();
+const passport = require('passport');
+var fs = require('fs');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('login', {title: 'Log In'});
+
+router.post('/', (req, res, next) => {
+	passport.authenticate('local', {
+		successRedirect: '/dashboard',
+		failureRedirect: '/error_login'
+	})(req, res, next);
+
+
 });
 
-// router.post('/', function(req, res, next) {
-//   passport.authenticate('local', {
-//     successRedirect: '/dashboard',
-//     failureRedirect: '/'
-//   })(req, res, next);
-
-
-// });
-
-// router.post('/', function(req, res, next) {
+// router.post('/', (req, res, next) => {
     
 //   // TODO: password and email init as undefined
 //   var password = req.body.password;
