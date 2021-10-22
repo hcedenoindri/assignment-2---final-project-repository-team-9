@@ -1,6 +1,4 @@
 const LocalStrategy = require('passport-local').Strategy;
-let users = require('../users.json');
-
 
 module.exports = function(passport) {
     console.log("Passport Function triggered");
@@ -8,6 +6,7 @@ module.exports = function(passport) {
         usernameField: 'email',
         passwordField: 'password'
     }, function(username, password, done) {
+        let users = require('../users.json');
         console.log(username);
         console.log(users);
 
@@ -27,8 +26,9 @@ module.exports = function(passport) {
         if(found_flag){
             done(null, user);
         }
-        
-        done(null, false);        
+        else {
+            done(null, false);  
+        }      
     }));
 
     passport.serializeUser(function(user, done) {
