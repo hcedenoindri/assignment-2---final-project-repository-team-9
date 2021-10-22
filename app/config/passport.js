@@ -3,7 +3,7 @@ let users = require('../users.json');
 
 
 module.exports = function(passport) {
-console.log("Passport Function triggered");
+    console.log("Passport Function triggered");
     passport.use(new LocalStrategy({
         usernameField: 'email',
         passwordField: 'password'
@@ -11,17 +11,24 @@ console.log("Passport Function triggered");
         console.log(username);
         console.log(users);
 
+        let found_flag = false;
+        let found_user = null;
         for (var index = 0; index < users.length; ++index) {
             var user = users[index];
             console.log(user.email);
+
             if(user.email == username && user.password == password){
-                done(null, user);
-            }
-            else{
-                done(null, false);
+                found_user = user;
+                found_flag = true;
+                break;
             }
         }
+
+        if(found_flag){
+            done(null, user);
+        }
         
+        done(null, false);        
     }));
 
     passport.serializeUser(function(user, done) {

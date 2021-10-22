@@ -1,7 +1,6 @@
 var express = require('express');
 var router = express.Router();
 const passport = require('passport');
-var fs = require('fs');
 
 
 router.post('/', (req, res, next) => {
