@@ -24,7 +24,7 @@ module.exports = function(passport) {
         }
 
         if(found_flag){
-            done(null, user);
+            done(null, found_user);
         }
         else {
             done(null, false);  
