@@ -65,4 +65,4 @@ router.post('/', function(req, res, next) {
     }
 });
 
-module.exports = {router, checkPassword};
+module.exports = {router, checkPassword, checkAccount};
