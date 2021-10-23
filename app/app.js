@@ -42,7 +42,7 @@ app.use(passport.session());
 
 app.use('/', loginRouter);
 app.use('/signup', signupRouter);
-app.use('/signupSubmit', signupSubmitRouter);
+app.use('/signupSubmit', signupSubmitRouter.router);
 app.use('/loginSubmit', loginSubmitRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/error_login', errorLoginRouter);
