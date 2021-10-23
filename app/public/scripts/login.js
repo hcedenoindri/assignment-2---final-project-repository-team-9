@@ -6,13 +6,13 @@ window.addEventListener('DOMContentLoaded', () => {
       emailInput.placeholder = "";
   });
   emailInput.addEventListener('blur', () => {
-      emailInput.placeholder = "email";
+      emailInput.placeholder = "Email";
   });
   passwordInput.addEventListener('focus', () => {
       passwordInput.placeholder = "";
   });
   passwordInput.addEventListener('blur', () => {
-    passwordInput.placeholder = "password";
+    passwordInput.placeholder = "Password";
 });
 
 
