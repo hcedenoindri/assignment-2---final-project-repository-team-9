@@ -13,7 +13,7 @@ var loginSubmitRouter = require('./routes/loginSubmit');
 var dashboardRouter = require('./routes/dashboard');
 var errorLoginRouter = require('./routes/error_login');
 var deleteSubmitRouter = require('./routes/deleteSubmit');
-// var editSubmitRouter = require('./routes/editSubmit');
+var editSubmitRouter = require('./routes/editSubmit');
 
 var app = express();
 
@@ -49,7 +49,7 @@ app.use('/loginSubmit', loginSubmitRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/error_login', errorLoginRouter);
 app.use('/deleteSubmit', deleteSubmitRouter);
-// app.use('/editSubmit', editSubmitRouter);
+app.use('/editSubmit', editSubmitRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
