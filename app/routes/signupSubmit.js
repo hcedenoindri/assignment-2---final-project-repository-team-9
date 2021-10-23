@@ -29,6 +29,7 @@ router.post('/', function(req, res, next) {
     var email = req.body.email;
     var password = req.body.password;
     var confirm_password = req.body.confirm_password;
+    let users_fd = fs.openSync('users.json');
     let rawdata = fs.readFileSync('users.json');
     let users = JSON.parse(rawdata);
 
@@ -59,6 +60,7 @@ router.post('/', function(req, res, next) {
         users.push(user);
         let data = JSON.stringify(users);
         fs.writeFileSync('users.json', data);
+        fs.closeSync(users_fd);
 
         res.render('account_created', { first_name : first_name, last_name: last_name});
     }

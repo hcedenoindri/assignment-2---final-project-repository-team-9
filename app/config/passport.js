@@ -1,4 +1,5 @@
 const LocalStrategy = require('passport-local').Strategy;
+var fs = require('fs');
 
 module.exports = function(passport) {
     console.log("Passport Function triggered");
@@ -6,22 +7,23 @@ module.exports = function(passport) {
         usernameField: 'email',
         passwordField: 'password'
     }, function(username, password, done) {
-        let users = require('../users.json');
+        let users_fd = fs.openSync('users.json');
+        let rawdata = fs.readFileSync('users.json');
+        let users = JSON.parse(rawdata);
+        fs.closeSync(users_fd);
         console.log(username);
         console.log(users);
 
         let found_flag = false;
         let found_user = null;
-        for (var index = 0; index < users.length; ++index) {
-            var user = users[index];
+        users.forEach( (user) => {
             console.log(user.email);
 
             if(user.email == username && user.password == password){
                 found_user = user;
                 found_flag = true;
-                break;
             }
-        }
+        });
 
         if(found_flag){
             done(null, found_user);
