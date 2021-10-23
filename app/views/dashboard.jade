@@ -14,6 +14,7 @@ html
 body 
     div(class="container")
         div(class="row gutters")
+
             div(class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12")
                 div(class="card h-100")
                     div(class="card-body")
@@ -25,41 +26,50 @@ body
                                 h6(class="user-email") #{userInfo.email}
                     div(class="card-footer")
                         div(class="text-center")
-                            button(type="button" id="log-out-submit" name="log-out-submit" class="btn btn-secondary") Log Out
+                            form(method="get" action="/")
+                                button(type="submit" id="log-out-submit" name="log-out-submit" class="btn btn-secondary") Log Out
+
             div(class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12")
                 div(class="card h-100")
                     div(class="card-body")
-                        div(class="row gutters")
-                            div(class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12")
-                                h6(class="mb-2 text-primary") Edit Profile
-                            div(class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12")
-                                div(class="form-group")
-                                    label(for="firstName") First Name
-                                    input(type="text" class="form-control" id="firstName" placeholder="Enter first name")
-                            div(class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12")
-                                div(class="form-group")
-                                    label(for="eMail") Email
-                                    input(type="email" class="form-control" id="eMail" placeholder="Enter email")
-                            div(class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12")
-                                div(class="form-group")
-                                    label(for="lastName") Last Name
-                                    input(type="text" class="form-control" id="lastName" placeholder="Enter last name")
-                        div(class="row gutters")
-                            div(class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12")
-                                div(class="form-group")
-                                    label(for="oldPassword") Old Password
-                                    input(type="name" class="form-control" id="oldPassword" placeholder="Enter old password")
-                            div(class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12")
-                                div(class="form-group")
-                                    label(for="newPassword") New Password
-                                    input(type="password" class="form-control" id="newPassword" placeholder="Enter new password")
-                            div(class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12")
-                                div(class="form-group")
-                                    label(for="confirmNewPassword") Confirm New Password
-                                    input(type="text" class="form-control" id="confirmNewPassword" placeholder="Re-enter new password")
-                        div(class="row gutters")
-                            div(class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12")
-                                div(class="text-right")
-                                    button(type="button" id="delete-submit" name="delete-submit" class="btn btn-secondary") Delete Profile
-                                    button(type="button" id="submit" name="submit" class="btn btn-primary") Update
+                        form(method="post" action="/editSubmit")
+                            div(class="row gutters")
+                                div(class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12")
+                                    h6(class="mb-2 text-primary") Edit Profile
+                                div(class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12")
+                                    div(class="form-group")
+                                        label(for="firstName") First Name
+                                        input(type="text" class="form-control" name="firstName" placeholder="Enter first name")
+                                div(class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12")
+                                    div(class="form-group")
+                                        label(for="newEmail") Email
+                                        input(type="email" class="form-control" name="newEmail" placeholder="Enter email")
+                                div(class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12")
+                                    div(class="form-group")
+                                        label(for="lastName") Last Name
+                                        input(type="text" class="form-control" name="lastName" placeholder="Enter last name")
+                            div(class="row gutters")
+                                div(class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12")
+                                    div(class="form-group")
+                                        label(for="oldPassword") Old Password
+                                        input(type="password" class="form-control" name="oldPassword" placeholder="Enter old password")
+                                div(class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12")
+                                    div(class="form-group")
+                                        label(for="newPassword") New Password
+                                        input(type="password" class="form-control" name="newPassword" placeholder="Enter new password")
+                                div(class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12")
+                                    div(class="form-group")
+                                        label(for="confirmNewPassword") Confirm New Password
+                                        input(type="password" class="form-control" name="confirmNewPassword" placeholder="Re-enter new password")
+                            div(class="row gutters")
+                                div(class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12")
+                                    div(class="text-right")
+                                        input(type="hidden" name="oldEmail" value="#{userInfo.email}")
+                                        input(type="hidden" name="validOldPassword" value="#{userInfo.password}")
+                                        button(type="submit" id="submit" name="submit" class="btn btn-primary") Update
+                                        
+                    div(class="card-footer")
+                        form(method="post" action="/deleteSubmit")
+                            input(type="hidden" id="email" name="email" value="#{userInfo.email}")
+                            button(type="submit" id="delete-submit" name="delete-submit" class="btn btn-secondary") Delete Profile
 

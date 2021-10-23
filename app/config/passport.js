@@ -28,9 +28,8 @@ module.exports = function(passport) {
         if(found_flag){
             done(null, found_user);
         }
-        else {
-            done(null, false);  
-        }      
+        
+        done(null, false);    
     }));
 
     passport.serializeUser(function(user, done) {
