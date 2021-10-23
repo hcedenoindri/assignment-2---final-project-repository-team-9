@@ -1,9 +1,10 @@
 const signup = require('../routes/signup.js')
 const login = require('../routes/login.js')
-//const users = require('../users.json')
+const userdata = require('../users.json')
 const signupSubmit = require('../routes/signupSubmit')
+var express = require('express');
+var router = express.Router();
 var fs = require('fs');
-
 
 // describe("testing sign up functionality", ()=>{
 
@@ -26,6 +27,27 @@ var fs = require('fs');
 //         expect(login.found_flag).toBeFalsy();
 //     })
 // })
+
+describe("testing check account functionality", ()=>{
+
+    test("account in json", ()=>{
+        let rawdata = fs.readFileSync('users.json');
+        let users = JSON.parse(rawdata);
+        let user = {first_name:"Test",last_name:"Account",email:"test@gmail.com",password:"YkuiK8tCGk!4Xqe"};
+        users.push(user);
+        let data = JSON.stringify(users);
+        fs.writeFileSync('users.json', data);
+        expect(signupSubmit.checkAccount(user['email'], users)).toBeFalsy();
+    })
+
+    test("account not in json", ()=>{
+        let rawdata = fs.readFileSync('users.json');
+        let users = JSON.parse(rawdata);
+        expect(signupSubmit.checkAccount('nope@notanemail.com', users)).toBeTruthy();
+    })
+
+
+})
 
 describe("testing check password functionality", ()=>{
 
