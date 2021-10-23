@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 
-
 function checkPassword(password) {
     if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,20}$/.test(password)) {
         return true;
@@ -65,4 +64,5 @@ router.post('/', function(req, res, next) {
     }
 });
 
-module.exports = router;
+module.exports = {router:router, checkAccount:checkAccount, checkPassword:checkPassword}
+
