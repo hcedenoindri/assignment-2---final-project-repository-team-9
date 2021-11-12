@@ -80,7 +80,7 @@ router.post('/', function(req, res, next) {
         fs.writeFileSync('users.json', data);
         fs.closeSync(users_fd);
 
-        res.render('dashboard', {userInfo:found_user});
+        res.render('userProfile', {userInfo:found_user});
     }
 });
 

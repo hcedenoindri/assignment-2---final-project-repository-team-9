@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 const axios = require('axios');
 
-/* GET users listing. */
 router.get('/', function(req, res, next) {
     let userInfo = req.user;
     console.log(req.user);
