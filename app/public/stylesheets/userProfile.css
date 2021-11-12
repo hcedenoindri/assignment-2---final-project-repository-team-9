@@ -66,5 +66,7 @@ body {
 
 #nav-bar {
     background: white !important;
+    padding-left: 12px;
+    padding-right: 12px;
 }
 
