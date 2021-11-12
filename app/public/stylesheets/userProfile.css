@@ -1,6 +1,5 @@
 body {
     margin: 0;
-    padding-top: 40px;
     color: #2e323c;
     background: #f5f6fa;
     position: relative;
@@ -64,3 +63,10 @@ body {
     background: #f74444;
     margin-right: 5px;
 }
+
+#nav-bar {
+    background: white !important;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
