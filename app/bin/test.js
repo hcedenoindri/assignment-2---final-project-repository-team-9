@@ -71,4 +71,8 @@ describe("testing check password functionality", ()=>{
         expect(signupSubmit.checkPassword('Passwordd')).toBeFalsy();
     })
 
+    test("blank entry", ()=>{
+        expect(signupSubmit.checkPassword('')).toBeFalsy();
+    })
+
 })

@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var fs = require('fs');
+var db = require('../database_functions.js')
 
 function checkPassword(password) {
     if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,20}$/.test(password)) {
@@ -57,6 +58,7 @@ router.post('/', function(req, res, next) {
             password: password
         };
         
+        db.createUser(user.first_name, user.last_name, user.email, user.password);
         users.push(user);
         let data = JSON.stringify(users);
         fs.writeFileSync('users.json', data);

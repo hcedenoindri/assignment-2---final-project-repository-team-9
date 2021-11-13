@@ -1,5 +1,6 @@
 const LocalStrategy = require('passport-local').Strategy;
 var fs = require('fs');
+var db = require('../database_functions.js');
 
 module.exports = function(passport) {
     console.log("Passport Function triggered");
@@ -12,24 +13,40 @@ module.exports = function(passport) {
         let users = JSON.parse(rawdata);
         fs.closeSync(users_fd);
         console.log(username);
-        console.log(users);
+        console.log(password);
 
-        let found_flag = false;
-        let found_user = null;
-        users.forEach( (user) => {
-            console.log(user.email);
+        // let found_flag = false;
+        // let found_user = null;
+        // users.forEach( (user) => {
+        //     console.log(user.email);
 
-            if(user.email == username && user.password == password){
-                found_user = user;
-                found_flag = true;
-            }
-        });
+        //     if(user.email == username && user.password == password){
+        //         found_user = user;
+        //         found_flag = true;
+        //     }
+        // });
 
-        if(found_flag){
-            done(null, found_user);
-        }
+        // if(found_flag){
+        //     done(null, found_user);
+        // }
         
-        done(null, false);    
+        let findUser = 'SELECT * FROM USERS WHERE email = ?';
+        db.db.get(findUser, username, function (err, user) {
+            console.log(user);
+            if (err) {
+                console.log(err);
+                done(null, false);
+            }
+            if (!user) {
+                console.log('not found');
+                done(null, false);
+            }
+    
+            if(user.password == password){
+                done(null, user);
+                // console.log(found_user);
+            }  
+        });
     }));
 
     passport.serializeUser(function(user, done) {

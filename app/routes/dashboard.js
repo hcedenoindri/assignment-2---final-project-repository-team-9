@@ -6,7 +6,8 @@ router.get('/', function(req, res, next) {
     let userInfo = req.user;
     console.log(req.user);
 
-    setInterval(updatePrices(res, userInfo), 60 * 1000) // Update prices every 1 minute
+    res.render('dashboard', {userInfo});
+    // setInterval(updatePrices(res, userInfo), 60 * 1000) // Update prices every 1 minute
 });
 
 async function updatePrices(res, userInfo) {
