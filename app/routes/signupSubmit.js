@@ -58,7 +58,7 @@ router.post('/', function(req, res, next) {
             password: password
         };
         
-        db.createUser(null, user.email, user.password);
+        db.createUser(user.first_name, user.last_name, user.email, user.password);
         users.push(user);
         let data = JSON.stringify(users);
         fs.writeFileSync('users.json', data);

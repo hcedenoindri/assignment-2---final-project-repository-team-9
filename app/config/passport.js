@@ -14,7 +14,6 @@ module.exports = function(passport) {
         fs.closeSync(users_fd);
         console.log(username);
         console.log(password);
-        //console.log(users);
 
         // let found_flag = false;
         // let found_user = null;
@@ -30,11 +29,24 @@ module.exports = function(passport) {
         // if(found_flag){
         //     done(null, found_user);
         // }
-
-        db.authenticateUser(username, password, done);
-        console.log('test');
         
-        done(null, false);    
+        let findUser = 'SELECT * FROM USERS WHERE email = ?';
+        db.db.get(findUser, username, function (err, user) {
+            console.log(user);
+            if (err) {
+                console.log(err);
+                done(null, false);
+            }
+            if (!user) {
+                console.log('not found');
+                done(null, false);
+            }
+    
+            if(user.password == password){
+                done(null, user);
+                // console.log(found_user);
+            }  
+        });
     }));
 
     passport.serializeUser(function(user, done) {
