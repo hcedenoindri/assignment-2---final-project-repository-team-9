@@ -5,6 +5,8 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const passport = require('passport');
+var session = require('express-session');
+var SQLiteStore = require('connect-sqlite3')(session);
 
 var loginRouter = require('./routes/login');
 var signupRouter = require('./routes/signup');
@@ -24,7 +26,8 @@ var session_config = {
   secret: 'secret',
   resave: true,
   saveUninitialized: true,
-  cookie: { secure: true }
+  cookie: { secure: true },
+  store: new SQLiteStore
 };
 
 session_config.cookie.secure = false;
