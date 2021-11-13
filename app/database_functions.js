@@ -38,8 +38,7 @@ let authenticateUser = (found_user, username, password, done) =>{
             console.log('not found');
             found_user = null;
 		}
-
-        if(user.password == password){
+        else if(user.password == password){
             found_user = user;
             console.log(found_user);
         }  
