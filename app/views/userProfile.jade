@@ -95,10 +95,10 @@ html
                                         input(type="hidden" name="validOldPassword" value="#{userInfo.password}")
                                         button(type="submit" id="submit" name="submit" class="btn btn-primary") Update
 
-                                        div(class="text-right")
-                                            form(method="post" action="/deleteSubmit")
-                                                input(type="hidden" id="email" name="email" value="#{userInfo.email}")
-                                                button(type="submit" id="delete-submit" name="delete-submit" class="btn btn-secondary") Delete Profile
+                            div(class="text-right")
+                                form(method="post" action="/deleteSubmit")
+                                    input(type="hidden" id="email" name="email" value="#{userInfo.email}")
+                                    button(type="submit" id="delete-submit" name="delete-submit" class="btn btn-secondary") Delete Profile
 
 
 
