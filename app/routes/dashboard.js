@@ -4,9 +4,9 @@ const axios = require('axios');
 
 router.get('/', function(req, res, next) {
     let userInfo = req.user;
-    console.log(req.user);
 
     res.render('dashboard', {userInfo});
+    updatePrices(res, userInfo);
     // setInterval(updatePrices(res, userInfo), 60 * 1000) // Update prices every 1 minute
 });
 
@@ -16,17 +16,17 @@ async function updatePrices(res, userInfo) {
         // handle success
         
         let qoute = response;
+        console.log(qoute);
         //Math.floor(Math.random() * qoute.length)
-        let aQoute = qoute.data[Math.floor(Math.random() * qoute.data.length)];
-        console.log(aQoute);
-        res.render('login', {data: aQoute });
+        // let aQoute = qoute.data[Math.floor(Math.random() * qoute.data.length)];
+        // console.log(aQoute);
+        // res.render('login', {data: aQoute });
     })
     .catch(function (error) {
         // handle error
         console.log(error);
     })
 
-    res.render('dashboard', {userInfo});
 }
 
 module.exports = router;

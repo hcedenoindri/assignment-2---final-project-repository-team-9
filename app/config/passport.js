@@ -30,19 +30,19 @@ module.exports = function(passport) {
         //     done(null, found_user);
         // }
         
-        let findUser = 'SELECT * FROM USERS WHERE email = ?';
+        let findUser = 'SELECT * FROM users WHERE email = ?';
         db.db.get(findUser, username, function (err, user) {
             console.log(user);
             if (err) {
                 console.log(err);
                 done(null, false);
             }
-            if (!user) {
+            else if (!user) {
+                console.log(username)
                 console.log('not found');
                 done(null, false);
             }
-    
-            if(user.password == password){
+            else if(user.password == password){
                 done(null, user);
                 // console.log(found_user);
             }  
