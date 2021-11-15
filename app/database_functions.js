@@ -58,8 +58,22 @@ let deleteUser = (username) =>{
     
 }
 
+let editUser = (fname, lname, old_email, email, password) =>{
+
+    var editQuery = 'UPDATE USERS SET first_name = ?, last_name = ?, email = ?, password = ? WHERE email = ?';
+    var params = [fname, lname, email, password, old_email];
+    db.run(editQuery, params, function(err){
+		if (err){
+			return console.log(err.message);
+		}
+		console.log("User Updated");
+		console.log(`Rows updated ${this.changes}`);
+	});
+    
+}
+
 let resetDb = () => {
     db.run('DELETE FROM USERS');
 }
 
-module.exports = {db, createUser, authenticateUser, resetDb, deleteUser};
+module.exports = {db, createUser, authenticateUser, resetDb, deleteUser, editUser};
