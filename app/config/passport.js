@@ -24,7 +24,10 @@ module.exports = function(passport) {
             }
             else if(user.password == password){
                 done(null, user);
-            }  
+            }
+            else{
+                done(null, false)
+            }
         });
     }));
 
