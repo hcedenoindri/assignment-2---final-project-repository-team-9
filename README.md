@@ -3,6 +3,9 @@
 ## Charting Library
 The data that will be displayed is from the Nomics API, which has all of the cryptocurrency information. On the web app, only the active currencies by their names, symbols, and their current prices will be displayed in a table that is sorted by rank.
 
+## ER Diagram
+![ER Diagram](erd.png?raw=true "ER Diagram")
+
 Test Decriptions:
 
 -Testing checkAccount function:
