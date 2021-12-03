@@ -1,5 +1,4 @@
 app/node_modules
 node_modules
-app/users.json
 package-lock.json
 app/package-lock.json

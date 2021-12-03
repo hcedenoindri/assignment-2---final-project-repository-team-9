@@ -7,6 +7,10 @@
     "test": "jest"
   },
   "dependencies": {
+    "axios": "^0.24.0",
+    "bcrypt": "^5.0.1",
+    "bcryptjs": "^2.4.3",
+    "connect-sqlite3": "^0.9.12",
     "constantinople": "^4.0.1",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -17,7 +21,8 @@
     "morgan": "~1.9.1",
     "passport": "^0.5.0",
     "passport-local": "^1.0.0",
-    "regex": "^0.1.1"
+    "regex": "^0.1.1",
+    "sqlite3": "^5.0.2"
   },
   "devDependencies": {
     "jest": "^27.3.1"

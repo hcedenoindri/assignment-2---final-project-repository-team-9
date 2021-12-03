@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var fs = require('fs');
+let users = require('../database_functions.js')
 
 function checkPassword(password) {
     if (/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,20}$/.test(password)) {
@@ -35,9 +36,9 @@ router.post('/', function(req, res, next) {
     var valid_old_password = req.body.validOldPassword;
     var password = req.body.newPassword;
     var confirm_password = req.body.confirmNewPassword;
-    let users_fd = fs.openSync('users.json');
-    let rawdata = fs.readFileSync('users.json');
-    let users = JSON.parse(rawdata);
+    // let users_fd = fs.openSync('users.json');
+    // let rawdata = fs.readFileSync('users.json');
+    //let users = JSON.parse(rawdata);
 
     if (password != confirm_password) {
         var error = "Passwords do not match. Please try again.";
@@ -63,24 +64,30 @@ router.post('/', function(req, res, next) {
 
         'use strict';
 
-        let found_user = null;
-        users.forEach( (user) => {
-            console.log(user.email);
+        // let found_user = null;
+        // users.forEach( (user) => {
+        //     console.log(user.email);
 
-            if(user.email === old_email){
-                user.first_name = first_name;
-                user.last_name = last_name;
-                user.email = email;
-                user.password = password;         
-                found_user = user;       
-            }
-        });
+        //     if(user.email === old_email){
+        //         user.first_name = first_name;
+        //         user.last_name = last_name;
+        //         user.email = email;
+        //         user.password = password;         
+        //         found_user = user;       
+        //     }
+        // });
         
-        let data = JSON.stringify(users);
-        fs.writeFileSync('users.json', data);
-        fs.closeSync(users_fd);
+        // let data = JSON.stringify(users);
+        // fs.writeFileSync('users.json', data);
+        // fs.closeSync(users_fd);
+        users.editUser(first_name, last_name, old_email, email, password);
+        let user = req.user;
+        user.first_name = first_name;
+        user.last_name = last_name;
+        user.email = email;
+        user.password = password;
 
-        res.render('dashboard', {userInfo:found_user});
+        res.render('userProfile', {userInfo:user});
     }
 });
 
